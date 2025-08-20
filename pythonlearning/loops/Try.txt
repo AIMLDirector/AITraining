@@ -1,0 +1,14 @@
+if
+
+else
+
+
+For and while loop will be integrated with try condtion 
+
+try - condition 
+except  - failure -- log what we want to collect
+else - if the condition fail else will be executed
+finally --  This will be executed in all the cases 
+
+
+

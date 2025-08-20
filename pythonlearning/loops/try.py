@@ -23,8 +23,7 @@ except FileNotFoundError as e:
 
 
 try:
-    import ntlka
-    
+    import ntlka    
 except ImportError as e:
     print(f"Module not found: {e}")
 
