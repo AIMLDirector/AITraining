@@ -1,9 +1,10 @@
 
 # rule based chatbot
 # sentence matching or keyword matching chatbot
-# sentiment analysis chatbot
-# intent based chatbot
-# Q&A chatbot--LLM based chatbot - chatgpt 
+# sentiment analysis chatbot. --textblob
+# intent based chatbot -- cloud based chatbot -- lex bot 
+# Q&A chatbot--LLM based chatbot - chatgpt , gemini, grok
+
 
 
 def simplebot():
