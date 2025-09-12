@@ -1,0 +1,23 @@
+a = 1 # global variable 
+print(a)
+
+def func1():
+  b = 2  # local variable 
+  print(b)
+  
+
+print(b)  # unknown or not initialized 
+print(a)
+
+
+Variable Data Types : 
+Text Types : String 
+numeric types: int, float, complex
+Sequence types: list , tuples, range
+mapping types : dict
+
+
+
+boolen Types: boolen
+binary types: bytes , bytearray , memoryview
+set types:  set, frozenset 

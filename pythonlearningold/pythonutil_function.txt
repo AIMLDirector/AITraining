@@ -1,0 +1,6 @@
+1. Math & Number: abs, round, math, statistics
+2. random & probability : random.random , random.choice
+3. Data & Time : datetime, Time
+4. Text & Strings: len, str,
+5. Collections, iteration : enumerate, zip counter
+6. Files & Directory : os
