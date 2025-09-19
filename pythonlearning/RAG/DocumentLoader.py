@@ -90,6 +90,7 @@ web_loader = WebBaseLoader("https://www.example.com/your-article")
 web_documents = web_loader.load()
 documents.extend(web_documents)
 
+# pip install langchain langchain-community langchain-text-splitters langchain-community 
 
 #https://python.langchain.com/docs/concepts/document_loaders/
 #https://python.langchain.com/docs/concepts/text_splitters/#text-structured-based

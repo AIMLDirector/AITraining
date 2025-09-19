@@ -1,0 +1,9 @@
+langchain
+langgraph
+openai
+chromadb
+tqdm
+python-dotenv
+unstructured
+transformers
+sentence-transformers

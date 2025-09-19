@@ -1,0 +1,774 @@
+NLP Phases: process and analysis that has to be followed
+
+    1. Syntactic analysis
+    2. Lexical analysis 
+    3. Semantic analysis 
+
+pip install ipykernel 
+ipython kernel install --user --name=ntptesting	
+jupyter notebook
+
+NLP techniques:
+1. Stop words  - common word that dont contribute any meanings
+2. Tokenization - breaking down the text into individual words or unit 
+3. Stemming - reducing the word to their base word — ( running — run( verb) - it will try to find the base word very fast but it will not be accurate — run , python- path
+4. Lemmatization - reducing the word to their root word with understanding the meaning of the root word and it relationship. Since it does lot of validation it will be slow . 
+5.  Syntaxing and parsing
+    1. POS — part of speech tagging — run - verb
+    2.  Dependency parsing — - relationship between the correlated words.  - contextual analytical 
+    3.  Constituency parsing  - breaking down the phrases or paragraphs into sentences   — sentences ( . , !)
+ 6. NER -  named entity recognition - identifying and classfying the entities in text - ( kumar - name, run - playing ,  - analytics 
+
+	1 social media website 
+    2. E commerce website — amazon 
+ Ex: 
+	I am travelling to Hyderabad in train on 25th May for festival   - 
+Chatbot:
+https://www.linkedin.com/pulse/building-chatbot-using-hugging-face-transformers-library-1bmff/
+Travelling - journey
+Hyd	- location or city 
+Train - transport
+25 - date
+May - month 
+Festival - festival 
+
+7  Word sense disambiguation ( WSD)  - The boy is playing/singing/sleeping  
+1 text generation 
+2 . Code generation -  GitHub copilot 
+
+8. Coreference resolution  - HE -> Ram — building the relationship between the sentence  — llm  
+
+
+How to travel from Bangalore to Hyderabad for tourist trip 
+
+
+ —    Hyderabad —   > Which are place I can visit  in Hyderabad ?  —past 3 sentence -  — 80 %  
+
+ Chatbot — 40 %     - 60 % 
+
+
+Ram îs interested in sport. He is 
+
+1. Coreference resolution  & Dependency parsing - 20 % 
+
+
+python ipykernel mac — filler word  or stop word 
+
+
+  1 .  100 website - 3
+2. Python + ipykernel —  200 websites -2 
+3.  Python + ipykernel + Mac — 300 websites  - top priority 
+      1. Main page  -25 website pages  —  10 pages in the screen 
+       2 sub pages 
+        3. Headers
+         4 backend data
+         5 configuration files 
+
+Contextual analysis — Transform
+
+
+Install in the base machine  — 
+
+Nlp
+
+1. Spacy  — 10 package — test - 1.1 
+2. Nltk   — 10 package  — test - 1
+
+ binary got corruption  code will not work proper 
+			 50 % 
+		 1. Uninstall and reinstall 
+		2. Copy the delete file from some other machine 
+
+1 library file link 
+2 binary information 
+3. Reboot
+
+ Base machine  — python 3.11
+
+
+1 virtualenv1 — ( virtual machine) 
+		python 3.11
+		nltk — test 1    — configuration - delete 
+		
+Formating you laptop 
+
+2 virtualenv2 
+		python 3.11
+		spacy — test 1.1 
+
+
+Pip install virtualenv
+
+Python -m venv virtualenv1
+
+Cd virtualenv1/script/
+activate.bat
+
+ >>> from gensim.models import FastText
+        >>> from gensim.test.utils import common_texts  # some example sentences
+        >>>
+        >>> print(common_texts[0])
+        ['human', 'interface', 'computer']
+        >>> print(len(common_texts))
+        9
+        >>> model = FastText(vector_size=4, window=3, min_count=1)  # instantiate
+        >>> model.build_vocab(corpus_iterable=common_texts)
+        >>> model.train(corpus_iterable=common_texts, total_examples=len(common_texts), epochs=10)  # train
+
+https://fasttext.cc/docs/en/supervised-tutorial.html
+
+The Transformer model was introduced in the seminal 2017 paper "Attention Is All You Need" by Vaswani et al. from Google. It revolutionized how we approach sequence-to-sequence tasks (like machine translation, text summarization, etc.) by moving away from recurrent neural networks (RNNs) and LSTMs, which were the dominant architectures at the time. The key innovation was the self-attention mechanism, which allows the model to weigh the importance of different words in a sequence when processing any given word, regardless of their distance from each other.
+Here's a detailed breakdown of its components and how it works:
+Core Idea: Parallel Processing and Attention
+Unlike RNNs that process words sequentially (one after another), which creates a bottleneck for long sequences and limits parallelization, Transformers can process all words in a sequence simultaneously. This is achieved through the attention mechanism.
+Key Components of the Transformer Architecture:
+The Transformer generally consists of two main parts: an Encoder and a Decoder.
+1. Input Embedding:
+* Word Embeddings: Like most NLP models, Transformers first convert input words (tokens) into dense vector representations. These embeddings capture some semantic meaning of the words.
+* Positional Encoding: Since the Transformer doesn't use recurrence, it has no inherent sense of word order. To address this, positional encodings are added to the input embeddings. These are vectors that provide information about the position of each word in the sequence. The original paper used sine and cosine functions of different frequencies:
+    * PE(pos,2i) =sin(pos/100002i/dmodel )
+    * PE(pos,2i+1) =cos(pos/100002i/dmodel ) where pos is the position of the word, i is the dimension of the embedding, and d_model is the dimensionality of the embeddings. This allows the model to learn to attend to relative positions.
+2. The Encoder:
+The encoder's job is to process the input sequence and generate a rich contextual representation for each word. It consists of a stack of identical layers (e.g., 6 layers in the original paper). Each encoder layer has two main sub-layers:
+* a. Multi-Head Self-Attention Mechanism:
+    * Self-Attention (Scaled Dot-Product Attention): This is the heart of the Transformer. For each word in the input sequence, self-attention allows the model to look at other words in the same sequence to get a better understanding and representation of that word. It calculates attention scores between the current word and all other words (including itself).
+        * Queries (Q), Keys (K), Values (V): To compute self-attention, the input embeddings (or the output of the previous layer) for each word are linearly projected into three different vectors: a Query vector (Q), a Key vector (K), and a Value vector (V). These projections are learned during training.
+            * Query (Q): Represents the current word asking for information.
+            * Key (K): Represents all other words in the sequence offering information.
+            * Value (V): Represents the actual information content of these other words.
+        * Attention Score Calculation: The attention score for a query (current word) with respect to a key (another word) is calculated as the dot product of Q and K. This score is then scaled by the square root of the dimension of the key vectors (dk 
+
+        * ) to prevent overly large dot products for higher dimensions, which could lead to vanishing gradients in the softmax function. Attention(Q,K,V)=softmax(dk 
+
+        * QKT )V
+        * Softmax: A softmax function is applied to these scaled scores to get attention weights (probabilities) that sum up to 1. These weights determine how much focus to place on each word in the input sequence when generating the output for the current word.
+        * Weighted Sum: The Value vectors are then multiplied by their corresponding attention weights and summed up to produce the output of the self-attention layer for that word. This output is a contextualized embedding for the word.
+    * Multi-Head Attention: Instead of performing a single attention function, the Transformer uses "multi-head" attention. This means the Q, K, and V vectors are projected multiple times (e.g., 8 "heads") with different, learned linear projections. Each head performs the attention mechanism independently in parallel.
+        * Benefits:
+            * It allows the model to jointly attend to information from different representation subspaces at different positions. A single attention head might average out important information.
+            * Different heads can learn different types of relationships (e.g., one head might focus on syntactic relationships, another on semantic similarity).
+        * The outputs of these independent heads are then concatenated and linearly projected again to produce the final output of the multi-head attention layer.
+* b. Position-wise Feed-Forward Networks (FFN):
+    * After the multi-head attention sub-layer, the output for each position (word) is passed through a fully connected feed-forward network. This FFN consists of two linear transformations with a ReLU (Rectified Linear Unit) activation in between: FFN(x)=max(0,xW1 +b1 )W2 +b2
+    * This FFN is applied to each position separately and identically. It helps in further processing the contextual information learned by the attention mechanism and adds non-linearity.
+* Add & Norm (Residual Connections and Layer Normalization):
+    * Each of the two sub-layers (Multi-Head Attention and FFN) in an encoder layer has a residual connection around it, followed by layer normalization.
+    * Residual Connection: The input to the sub-layer is added to the output of the sub-layer (x+Sublayer(x)). This helps in preventing vanishing gradients in deep networks and allows for easier training of deeper models.
+    * Layer Normalization: This normalizes the activations of the layer across the features for each individual sample. It helps to stabilize the learning process and speeds up training by reducing "internal covariate shift."
+Example of Encoder Processing (Conceptual):
+Input: "The cat sat on the mat"
+1. Embedding + Positional Encoding: Each word gets an embedding vector, and a positional encoding vector is added to it.
+    * Embedding(The) + PE(0)
+    * Embedding(cat) + PE(1)
+    * ...
+2. Encoder Layer 1:
+    * Multi-Head Self-Attention:
+        * For "cat": The model calculates attention scores between "cat" (Query) and all other words "The", "cat", "sat", "on", "the", "mat" (Keys).
+        * These scores determine how much "cat" should pay attention to each other word to understand its context. For instance, it might attend strongly to "sat" and "mat".
+        * This happens in multiple "heads," each potentially focusing on different aspects.
+        * The weighted sum of Value vectors (derived from all words) gives a new representation for "cat".
+    * Add & Norm.
+    * Feed-Forward Network: The new representation of "cat" is processed by the FFN.
+    * Add & Norm.
+3. This output becomes the input for Encoder Layer 2, and so on for N layers.
+4. The final output of the encoder stack is a sequence of contextualized embeddings, one for each input word.
+3. The Decoder:
+The decoder's job is to take the encoder's output (the contextualized representations of the input sequence) and generate the output sequence, one word at a time. It also consists of a stack of identical layers. Each decoder layer has three main sub-layers:
+* a. Masked Multi-Head Self-Attention Mechanism:
+    * This is similar to the self-attention in the encoder, but with a crucial difference: masking.
+    * When predicting the word at position i in the output sequence, the decoder should only attend to the previously generated words (positions 0 to i-1) and not to future words (positions i+1 onwards). This is because during inference (generation), future words are not yet known.
+    * The masking is typically implemented by setting the attention scores for future positions to negative infinity before the softmax, effectively making their attention weights zero.
+* b. Encoder-Decoder Multi-Head Attention (Cross-Attention):
+    * This sub-layer is where the decoder interacts with the encoder's output.
+    * The Queries (Q) come from the output of the previous decoder sub-layer (the masked self-attention).
+    * The Keys (K) and Values (V) come from the final output of the encoder stack (the contextualized representations of the input sequence).
+    * This allows each position in the decoder to attend to all positions in the input sequence. This is crucial for tasks like machine translation, where the alignment between input and output words is important. For example, when translating a German sentence to English, the decoder, while generating an English word, can look at the relevant German words from the encoder's output.
+* c. Position-wise Feed-Forward Networks (FFN):
+    * This is identical in structure to the FFN in the encoder layers.
+* Add & Norm: Similar to the encoder, each sub-layer in the decoder also has residual connections and layer normalization.
+Example of Decoder Processing (Conceptual - Machine Translation from English to French):
+Encoder Output: Contextualized embeddings for "The cat sat on the mat"
+Decoder Input (initially): <start_of_sentence> token.
+1. Decoder Layer 1 (generating the first French word):
+    * Input Embedding + Positional Encoding: Embedding(<start>) + PE(0)
+    * Masked Multi-Head Self-Attention: Attends only to <start> (as it's the only previous token).
+    * Add & Norm.
+    * Encoder-Decoder Attention:
+        * The Query comes from the output of the masked self-attention for <start>.
+        * Keys and Values come from the encoder's output (e.g., from "The", "cat", "sat", "on", "the", "mat").
+        * The decoder "looks" at the input sentence to decide which parts are most relevant for predicting the first French word (e.g., "Le").
+    * Add & Norm.
+    * Feed-Forward Network.
+    * Add & Norm.
+2. The output of this layer is passed to Decoder Layer 2, and so on.
+3. Final Linear Layer and Softmax:
+    * After the final decoder layer, the resulting vector is passed through a linear layer (which projects it to the size of the output vocabulary) and then a softmax layer.
+    * The softmax layer outputs a probability distribution over all possible words in the target vocabulary. The word with the highest probability is chosen as the predicted word (e.g., "Le").
+4. Next Timestep:
+    * The generated word ("Le") is then fed as input to the decoder in the next timestep, along with its positional encoding.
+    * The decoder now has <start>, "Le" as its known sequence and will predict the next word (e.g., "chat").
+    * This process continues until an <end_of_sentence> token is generated or a maximum length is reached.
+Why Transformers are So Effective:
+1. Parallelization: Unlike RNNs, computations within a Transformer layer (especially self-attention) can be heavily parallelized, leading to significantly faster training on modern hardware (GPUs/TPUs).
+2. Handling Long-Range Dependencies: Self-attention allows direct connections between any two words in a sequence, regardless of their distance. This makes it much better at capturing long-range dependencies compared to RNNs, where information has to flow sequentially and can get diluted over long distances.
+3. Hierarchical Feature Learning: The stack of encoder/decoder layers allows the model to learn increasingly complex and abstract representations of the input. Lower layers might capture syntactic information, while higher layers might capture more semantic or contextual nuances.
+4. Scalability: Transformers can be scaled up to very large models with billions of parameters (e.g., GPT-3, PaLM, Llama) and trained on massive datasets, leading to state-of-the-art performance on a wide range of NLP tasks.
+5. Transfer Learning: Pre-trained Transformer models (like BERT, RoBERTa, GPT) can be fine-tuned on smaller, task-specific datasets, achieving excellent results with less data. This has become a dominant paradigm in NLP.
+Types of Transformer Models:
+* Encoder-Only (e.g., BERT, RoBERTa, ELECTRA): Used for tasks that require understanding the input sequence, like text classification, named entity recognition, question answering (extractive). They produce rich contextual embeddings.
+* Decoder-Only (e.g., GPT series, PaLM, Llama): Autoregressive models primarily used for text generation tasks. They predict the next word in a sequence given the previous words.
+* Encoder-Decoder (e.g., original Transformer, BART, T5): Used for sequence-to-sequence tasks like machine translation, text summarization, and question answering (generative).
+Example: How Self-Attention Helps in Disambiguation
+Consider the sentence: "The bank by the river was eroding."
+* When the Transformer processes the word "bank," self-attention allows it to look at other words like "river" and "eroding."
+* The presence of "river" and "eroding" will give a higher attention score to these words, indicating that "bank" here refers to a river bank, not a financial institution.
+* This contextual information is incorporated into the embedding of "bank," making it more accurate.
+Impact and Significance:
+The Transformer architecture has been a game-changer in NLP and beyond (e.g., in computer vision with Vision Transformers). It has led to:
+* Significant improvements in machine translation quality.
+* The development of powerful pre-trained language models that serve as a foundation for many NLP applications.
+* Breakthroughs in text generation, question answering, sentiment analysis, and more.
+While complex, the core ideas of self-attention and parallel processing have proven to be incredibly powerful for modeling sequential data, especially text.
+
+from transformers import pipeline
+
+# Load a sentiment-analysis pipeline
+classifier = pipeline("sentiment-analysis")
+
+# Predict sentiment
+result = classifier("I love using transformers for NLP!")
+print(result)
+
+
+
+
+Transformer 
+  
+Pipeline ( model, finetuning parameter, max token , padding, truncation, vector_size ) — Seq2seq. 
+
+Langchain framework( pretraining, conversation , storing the data, validation ) 
+
+Langchain/ langgraph( agent AI ) Langsmith ( monitoring the components) 
+
+
+Gensim —  word2vec COW , POS 
+
+Transformer 
+1  pre-trained model directly with your requirement 
+2   pre-trained model and evaluated your data 
+3  Add you data and train the basic model and evaluate your validation/test data 
+
+Langchain : 
+
+
+ 1. Datastucture algorithm- queue/stack/sorting
+
+https://f5z56bs76n4.sg.larksuite.com/minutes/obsgmcb7659t1g67844h1mmj
+https://f5z56bs76n4.sg.larksuite.com/minutes/obsgqg63is19bhc1d55dpzs7
+https://f5z56bs76n4.sg.larksuite.com/minutes/obsgq5is4f92r2653r7g143l
+
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
+ 
+# Create chatbot
+bot = ChatBot("Assistant")
+ 
+# Train with English data
+trainer = ChatterBotCorpusTrainer(bot)
+trainer.train("chatterbot.corpus.english")
+ 
+# Chat loop
+while True:
+    user_input = input("You: ")
+    if user_input.lower() in ["bye", "exit", "quit"]:
+        print("Bot: Goodbye!")
+        break
+    response = bot.get_response(user_input)
+    print("Bot:", response)
+
+
+ Data analytics   Data science - machine learning - Gen AI 
+
+1 numbers/ Text/ images/video ( LLM)  - vendor 
+
+ LLM model( Vendor).  - 4 to 5 cr — 2 years 
+
+Vendor( consolidate all the data available in the public and train the data and publish that as different llm model)  
+
+ Downloading the model provided by the vendor and we are customarizing as per our company need  and evaluating for different use case  
+
+ 25 lakh — I will use your model  + environment + data + customerized logic + test your use case
+
+
+ 2B data / 450B.  25T data  ( 7 to 12 days) 
+
+
+
+
+ LLAMA.CPP —  ollama( framework to integrate the basic model) 
+
+Local llm ( Testing, development) 
+
+ Ollama ( models) 
+
+ Lmstudio( llama.cpp) — ( models) 
+
+
+ Sever — ollama( gpt, gemini, Claude, deepseek) — training -  - UI layer 
+
+
+Hugging face  - GitHub 
+
+ 
+Ollama — visual studio code 
+
+
+
+
+
+ Python  ( learning, coding language, 20000 code , Devops
+
+1.222222222292342354254223542343
+2.4444
+3.43. 
+
+1.22.    one numeric number with 2 decimal 
+
+1.222
+
+
+  I am learning python 
+
+0.22543 021132  1.2344243 1.73423
+
+I am learning python 
+
+
+ollama show --modelfile llama3:latest >>  Modelfile 
+
+Vi Modelfile
+PARAMETER temperature 1 
+SYSTEM """ you are a research assistance  please answer my question in a reasearch paper output method with maximum 300 words """ 
+
+
+ollama create custommodel1 -f Modelfile
+
+Ollama run custommodel1
+
+/show parameter
+/show info 
+
+
+https://github.com/ollama/
+
+  1. Data Engineering Team 
+  2. AI engineering Team 
+3. Development Team 
+
+ One team 
+
+POC : 
+
+ One team 
+
+Operation team( infrasturcute, cloud, devops) 
+
+Data : ( 100 to 250 ) —   60 members 
+1. DB team
+2. DB application team
+3. Data engineering team
+4. Data platform Team 
+
+ 80 to 100 members( 40 members) 
+1. Data science team — killing ( classification 
+2. AI team  — Gen AI 
+3. Data analytics Team 
+4. Dave visualisation team 
+
+Developers  & Testing 
+
+Data Team 
+AI Team 
+
+
+AI Team ( customazied front end ) — React or custom language
+
+1. Streamlit
+2. gradio
+
+
+Framework which is used in llm 
+1 langchain
+2 llamaindex
+3 haystack 
+
+RAG 
+
+1 - retrieve 
+2-  Augumentation
+3 - Generation 
+
+80 %  : domain data,  company data, troubleshooting, summarization
+
+1 . Design the Data source
+      Type of data ( text, pdf, web pages, images) 
+2. How are you going to consolidate( unified format) 
+3.  Store the data 
+
+Retrieve  5 %
+ 5 %
+10 % 
+
+1. DB
+2.  Text in folder
+3. Web
+4. Application log - json/yaml/text
+5. 
+
+
+How RAG( AI search engine)  is different from normal search ?
+
+
+RAG search
+1. Unified data format
+2.  It will search parallels 
+3. It will identify the meaningful information on the documents  and relevant of the question 
+
+ Plan :( how much this data is trusted  or authenticity  ?) 
+
+1  consolidate all the data sources ( share point, one drive,  NAS drive, object storage) 
+2 Data: Text, pdf, json, web— unified Data format
+3 Loading the data based on the format( data loader)
+4 split the data in small piece ( chunk)
+5 converting the data into embedding ( into numbers)( embedding)
+6 storing the data in a vector format in storage( vector DB) 
+
+
+
+Search:
+1. Cosine similarity search  ( closest match of the data)
+2.  Identify the meaning information and retrieve the data 
+
+
+Data loader- chunk - > embedding - vector store(db)- Search engine( meaning information by using any llm models) 
+
+RAG model: ( domain) ( self-service troubleshooting, onboarding, operation work) - no human interaction 
+1. Troubleshooting ( in-house or vendor/ public) 
+2. Onboarding procedure(pdf, word )
+3. SME document ( operation work) - ( design, vendor coordination, architecture, security standard)
+
+experience( 1 to 5 ) 
+Experience ( 15 to 20 ) 
+
+1. Upgrade my product, migration , security patch , vulnerability -  AI
+
+ 1 upgrade, vulnerability — POC — 1 year — use case 
+
+1. DB/Data engineering/ Infra operation( server, cloud, network, storage) ( RAG) 
+
+1 onboarding
+2 operation
+3 maintenance
+
+4 upgrade
+5 security 
+
+Testing( TDD- 70 %)  RAG + AI agent code 
+  1 test case generation ( jfrog artificate) — 
+  2 quality testing  — POC — 
+  3 function testing 
+  4 bug ticket based on the standard validation ( null function, password, loop, irrelevant of the logic , nested function)  - GitHub, bitbucket  coplit ( RAG + AI agent) 
+
+Developer( 1 to 5 years)  RAG + AI agent code 
+1 basic code generation
+2 function code generation
+3 DB codee generation
+
+Integrate code generation — POC 
+
+
+
+
+
+javascript code to generate a jwt token for google api user authentication for gmail account with frontend page with proper react project folder structure
+
+
+Created git commit.
+
+
+ 
+Sentence - word - token/chunk(100 words , , . ) - embedding - vector - store in DB 
+
+Chunk is to divide the document into small piece ( word count, by separator,  paragraph ) 
+
+ Langchain — basic information 
+ Langchain-core - plugin ,  — chain agents
+ Langchain-community —    ( integration, vendor) 
+ DB - Chroma, fiass, quadrant, mongodb, weaviate, pinecone ( vector DB) 
+
+ Cache DB, text  or document db, structured data db , graph db , vector db 
+
+Data: 
+
+1 loads the data  in langchain  -  document loader ( langchain-community) 
+    Web, pdf, text, doc log 
+     Structured or unstructured or semi structured 
+      DB - Sql query to fetch the data
+     Semi -stucuture - format( pdf, text, doc)
+    Unstructured 
+    Web ( xml  or plain data, table format) 
+
+Data engineer — copy the data will be done by data engineering ( NAS share or S3 bucket )  —  2 week - one month 
+
+ Path — data loaded ( format ) 
+
+Folder1 
+
+
+1 loading the data ( document loader)
+2 Text splitter 
+3 embedding ( open ai embedding , hugging face embedding)( word to number)
+4 vector    
+5 search ( similarity search)
+
+
+Mkdir RAG
+
+ troubleshootingRAG -
+      Data 
+          *.pdf
+          *.text
+       Model 
+          Pickle file 
+       Src
+          Ingestion.py( loading, chunking, embedding)  
+          Search.py( query, Q & A) 
+
+ Loaded the data ( 550 document into one document )   
+ One document  is  divided into chunks
+
+ I am learning python for the past 10 years.  — chunk 1 
+ I am working in data engineering    - chunk 2
+
+
+Chunk to embedding 
+
+[0.123, 2324, 132423,133, 2333 ]. - chunk 1
+[0.123, 2324, 45654,13523, 245234]. - chunk 2 
+
+
+
+
+ Question : when I start learning python ?   - question chunk1 
+
+ Chunk has to be converted to embedding 
+DB1
+Search query on the vector store 
+ [ 3423,0.123 r321432, 2333 ] —    [0.123, 2324, 132423,133, 2333 ].  ?  
+
+ [ 3423,0.123 r321432, 2333 ]  - [0.123, 2324, 45654,13523, 245234] ? 
+
+Ranking and take the top most matching 5 answers   
+1 cosine similarity 
+2  eecalding distance 
+ 
+ Ranking that in order ( 2 sec)  GPU servers 
+ 
+[0.123, 2324, 132423,133, 2333 ].  —    I am learning python for 10 years  1 
+[0.123, 2324, 13242323,133, 23333 ].  - I am learning python from small age -3 
+[0.123, 2324, 13242323,133, 2334534 ]. i am working on python for 10 year -2 
+[0.123, 2324, 13242323,133, 23369773 ]. I am using python for 1 year  - 4 
+[0.123, 2324, 13242323,133, 2336977ewqe].
+
+
+Decision on the final answer
+
+[0.123, 2324, 132423,133, 2333 ].  Embedding model to convert that back to text
+
+I am learning python for 10 years  
+
+
+Ai platform engineer
+
+ Friday night ( fetch all the document from the data sources ( share point, one drive, NAS drive)  100 doc 
+
+Operation team — share point folder ( read and copy ) 
+
+Engineer - has drive 
+
+
+
+Data engineer ( 2)  workflow 
+
+ NAS drive 
+
+ Trainingdocument :
+        Operation1
+          Troubleshooting.txt
+         100 doc 
+       Engineering1
+
+     	50 Doc
+      Engineering2 
+
+    20 Doc 
+
+
+Ai  - single doc( 170 Doc) 
+
+How to reset the password
+
+1 login the box
+
+2 
+3
+
+
+POc — auto trouble shoot and fix the problem 
+
+Cloud , data brick , networking — 
+
+Bank sector — my account got lock — 3 mins 
+
+Collection name — number of chunk ( doc1 )  10 chunk — delete 10 chunk - load the new doc( 10 chunk ) - collection 
+
+
+
+Documents —  old document or not upto the mark of the vendor 
+
+Website of vendor - ( website) or public search 
+
+
+Hybrid  RAG ( internal documents + public search) 
+
+Web loader-  ( S3 bucket path) 
+
+  Output 
+1 pages — internal page  output 
+2 page  — external page output 
+
+
+Output 
+ Single output 
+  
+Links ( source) from where it has taken from ( chatgpt) 
+
+Both internal and external documents 
+
+
+LLM ( static data) — 6 months lagging  — what is the current time or data .. 
+
+ Firewall ( url  with port number) 
+1 Travily  — cheap  — $1200 -      $5000 
+2 google search api - 15000  to 20000 —> 5000.
+3 duckduckgo  2000 
+
+
+ Data source — > DB — > query  ?  Answer —  r u satisfied   or not ? Yes .   
+
+No 
+
+ Web search -> — answer 
+
+
+Crew Ai 
+
+AI agent —  Structured way of executing the task or work . It has been designed to integrate all the tools and components in a serial  execution method similar to workflow 
+
+ Type of AI agents
+
+1. Simple reflex agents( rule based agents) ( multiple RAG or hybrid rag) 
+2. Model based agents( based on the environment  and based on the model) 
+3. Goal based agents( insurance company — 100 request process in 1 minutes , self driving car ) 
+
+1.  Utility based agents
+2. Learning Agents
+
+Crew Ai — integrate the multiple AI agent or to solve the real world problem — Framework to integrate multiple agents
+
+Employee onboarding :( Ai agents) 
+1. Offer role out
+2. Offer acceptance and join date — 45 days — 
+3.  Employee ID  
+4.  Employee bank account or personal account
+5. Financial data collection 
+6.  Laptop
+7.   Packages 
+8.  Team portal
+9. Team access 
+
+HR agent — 1,2,3 - hybrid RAG ( data + web Api , MCP) 
+Finance agent - 4,5
+IT service Agent - 6,7
+Team agent - 8,9 
+
+
+CrewAi - integrate all 
+
+Framework to build teams of ai Agents that can work together to solve real world problems
+
+Crew AI - everyone with his own components and module
+
+
+Crewai + langchain + RAG
+
+Crewai + llamaindex
+
+CREWAI  + Autogen 
+
+Crewai + langgraph
+
+
+RPA — Task — repeated activity - rule based.  ( 6 hours) — 10days  / sleep mode 
+
+Workflow + 
+
+
+LLm + RAG + AI agent 
+LLM + AI agent
+
+Cost: cloud 
+ 10000 — POC 
+
+LLM + langchain + Langgraph
+LLM + langchain + crewai
+LLM + Crewai
+LLM + llama index + crewai
+
+LLM + ollama + crewai ( open sources)  — enterprise 
+LLM + RAG + AI agent  
+
+AI engineer: 6 — 1 year - zero productivity  
+
+3 months ( POC) — 100 % failure ( team culture)  90 % — project are failure — not because of technology 
+
+Infrastructure.  - 2 + AI  40 —- > coding and data engineer — 6 month ( feature will change)  — continuous learning  - 10 years - 20 years 
+Data engineer -2 + AI  20  — 9 to 1year - accuracy - 15 years 
+Developer -2  + AI — pick up  -  3 month  — complete ( 2 to 4) -
+
+Cloud — AWS or AZUre — 20 commands/ cli( 40 tabs)  — creative — 5 years
+
+
+ 
+
+
+
+
+
+
+  
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 

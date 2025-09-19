@@ -1,0 +1,23 @@
+run:
+  probes: all               # Run all probes (you can also list specific ones)
+  max_probes: 10           # Limit number of probes per run
+  output_dir: ./garak_runs  # Save results here
+
+model:
+  backend: openai
+  model: gpt-4o-mini        # Swap with your deployed model
+  api_key_env: """
+
+plugins:
+  scorers:
+    - toxicity
+    - pii
+    - jailbreak
+  reporters:
+    - console
+    - json
+    - html
+
+logging:
+  level: INFO
+  file: garak.log

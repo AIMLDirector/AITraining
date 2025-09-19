@@ -1,0 +1,14 @@
+run:
+  generations: 10 # Send each prompt 10 times
+  probe_tags: "owasp:llm" # Select probes with tags starting with 'owasp:llm'
+
+plugins:
+  generators:
+    model_type: "huggingface" # Use the Hugging Face Hub generator
+    model_name: "EleutherAI/gpt-neo-125m" # Specify the model to be tested
+  
+  probes:
+    probe_spec: "all" # Run all available probes
+  
+  detectors:
+    detector_spec: "all" # Use all available detectors
