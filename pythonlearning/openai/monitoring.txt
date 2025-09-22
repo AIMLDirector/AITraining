@@ -1,0 +1,75 @@
+monitoring : 
+
+trace the application or the product which u build 
+LLm : open source or licensed version ( cloud , SAAS product) 
+
+ollama huggingface , openai, gemini, grok, cloud( AWS, azure )
+
+whether the cloud vendor are enabling llm log 
+Tracing :
+
+MPN  zone ( managed private network )( rule - 10 ) 90 % open and 10 % block
+web server
+application server
+DB servers
+middle servers
+llm server -- ( public document , troube shooting )
+
+secured zone(DMZ zone)( deny everything - 100 blocked ) - open 1, 2,3,4
+DB server( payment gateway)
+financial application 
+llm server( finance teams)
+
+
+Tracing :  snmp protocol portnumber 
+1 network layer tracing ( l2 and l3) - snmp protocol( splunk , tivoli, dynatrace, cloudwatch - Event management tools  - 1TB -- 15 days )
+2 application layer tracing ( L4 to l7) ( APM tools - application performance tools - datadog, prometheus/grafana, opentelementry( datadog, ))
+
+Tracking or tracing you application log or network log 
+
+1 which protocol r u going to communicate
+2 port number
+3 domain specific
+4 monitoring tools 
+5 agent on you servers  -- client - server( domainname and port number)
+
+logs -- forwarder -- collector( event manager) -- rule --> alert ( pagerduty, servicenow)
+
+llm will not generate the log( Tracing ): We need to build the logging standard and information
+Tracing tools( every session it will caputure end to end transaction) - succes, failure, error 
+framework how the output look like ( json or yaml format) 
+
+json - start -( success , integration , failure, port, authentication ) end 
+
+promtflow
+promethues
+opentelementry (5M) 3M 
+langfuse( tracing and capture the output), langsmith
+
+forward
+grafana
+datadog
+appdynamic
+langsmith
+langfuse
+
+openlit
+
+
+azure-monitor-opentelemetry-exporter     1.0.0b42
+opentelemetry-api                        1.37.0
+opentelemetry-exporter-otlp-proto-common 1.37.0
+opentelemetry-exporter-otlp-proto-http   1.37.0
+opentelemetry-instrumentation            0.58b0
+opentelemetry-instrumentation-langchain  0.47.2
+opentelemetry-instrumentation-openai     0.47.2
+opentelemetry-proto                      1.37.0
+opentelemetry-sdk                        1.37.0
+opentelemetry-semantic-conventions       0.58b0
+opentelemetry-semantic-conventions-ai    0.4.13
+promptflow                               1.18.1
+promptflow-core                          1.18.1
+promptflow-devkit                        1.18.1
+promptflow-tracing 
+
+pip install promptflow opentelemetry-api opentelemetry-proto opentelemetry-instrumentation opentelemetry-instrumentation-openai

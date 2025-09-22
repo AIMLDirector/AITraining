@@ -1,8 +1,23 @@
 import pickle
+
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader
 import numpy as np
+from promptflow.tracing import start_trace
+
+# Correct instrumentation for LangChain
+from opentelemetry import trace
+from opentelemetry.instrumentation.langchain import LangchainInstrumentor
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import SimpleSpanProcessor, ConsoleSpanExporter
+start_trace()
+LangchainInstrumentor().instrument()
+
+# Configure a console span exporter to view logs in the terminal
+span_exporter = ConsoleSpanExporter()
+tracer_provider = trace.get_tracer_provider()
+tracer_provider.add_span_processor(SimpleSpanProcessor(span_exporter))
 
 # --- Configuration ---
 MODEL_NAME = "all-MiniLM-L6-v2"
