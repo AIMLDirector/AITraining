@@ -4,6 +4,7 @@ from openai import OpenAI
 from langfuse import observe, Langfuse
 from langfuse.openai import openai
 
+
 # Load environment variables from .env file
 load_dotenv()
 

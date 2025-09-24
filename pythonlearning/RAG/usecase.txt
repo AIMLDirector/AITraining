@@ -1,0 +1,77 @@
+ 
+ onboarding step
+  1. document  
+  2. prerequirement 
+  3. validate 
+
+Data engineer( product)
+ 
+RAG 
+1. UI framework ( streamlit or gradio )
+2 Faiss DB to load the data 
+3 ollama( llama3.2 ) and openai ( llama3.2 ,  gemini, gpt4.0 min)
+4 embeding - hugging face embedding (all-MiniLM-L12-v2 )
+4. langchain 
+
+which model is meeting your need ?
+
+ 40 question - Test case  -- 30 question -- 
+1. customer 
+2. 
+
+sharepoint/confluence/onedrive -- 40 % use will come down --> RAG 
+
+RAG -- $5000  -- replacement cost 
+
+sharepoint -- duplicate, usage we can bring ( space and transaction ) - $ 20000,  firewall, VPN authentication 
+
+
+answer
+
+
+fine tune the ouput( 10 line output , email, word document )
+
+prompt( design )
+
+Document -- Text -- 
+
+ tools -- 
+ 1 ticket tools
+ 2 integration tools
+ 3 platform -- 
+
+ how much i am cloud environment what is my billing ? -- AWS cloud environment 
+
+Rag + AI agent ( integrating with the tools) 
+
+ai agent( public chat with  tools) 
+langchain having the tools integration 
+
+tools - 
+1 integration are their - plugin( langchain )
+2 API call( sdk or api)  or module ( boto3 , azure) - product , platform it is not working effecting (feature )
+3 MCP server(Nov -- Feb 2025)  -- ( stream https) -- platform ( cloud, monitor, data engineer, ticket )
+
+AI agent 
+workflow 
+1 RAG or chatgpt
+2. platform - ticket, status, gathering the problem statement, report 
+
+
+AI agent: platform -- Databrick ( chat) 
+copilot -- -- ai agent 
+
+langchain  -- plugin -- langgraph  - UI ( React)
+autogen -- microsoft
+crewai -- 2 use case ( nov -- product)
+
+ai Agent
+amazon ( product, payment gateway )
+food( product, payment , confirmation on the delivery , delivery agent )
+insurance 
+travell agency 
+
+ai agent - technology task  - 6 months( job, devop ( 50 % ))
+
+
+ai agent - first level developer( copilot)
